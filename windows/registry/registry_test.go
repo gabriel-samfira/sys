@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	"golang.org/x/sys/windows/registry"
+	"github.com/gabriel-samfira/sys/windows/registry"
 )
 
 func randKeyName(prefix string) string {

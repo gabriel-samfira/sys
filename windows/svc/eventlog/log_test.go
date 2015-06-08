@@ -9,7 +9,7 @@ package eventlog_test
 import (
 	"testing"
 
-	"golang.org/x/sys/windows/svc/eventlog"
+	"github.com/gabriel-samfira/sys/windows/svc/eventlog"
 )
 
 func TestLog(t *testing.T) {

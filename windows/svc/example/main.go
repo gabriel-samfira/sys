@@ -20,7 +20,7 @@ import (
 	"os"
 	"strings"
 
-	"golang.org/x/sys/windows/svc"
+	"github.com/gabriel-samfira/sys/windows/svc"
 )
 
 func usage(errmsg string) {

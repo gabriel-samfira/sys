@@ -14,7 +14,7 @@ import (
 	"syscall"
 	"unsafe"
 
-	"golang.org/x/sys/windows"
+	"github.com/gabriel-samfira/sys/windows"
 )
 
 // State describes service execution state (Stopped, Running and so on).

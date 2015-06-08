@@ -26,24 +26,26 @@ import (
 	"io"
 	"syscall"
 	"time"
+
+	"github.com/gabriel-samfira/sys/windows"
 )
 
 const (
 	// Registry key security and access rights.
 	// See https://msdn.microsoft.com/en-us/library/windows/desktop/ms724878.aspx
 	// for details.
-	ALL_ACCESS         = 0xf003f
-	CREATE_LINK        = 0x00020
-	CREATE_SUB_KEY     = 0x00004
-	ENUMERATE_SUB_KEYS = 0x00008
-	EXECUTE            = 0x20019
-	NOTIFY             = 0x00010
-	QUERY_VALUE        = 0x00001
-	READ               = 0x20019
-	SET_VALUE          = 0x00002
-	WOW64_32KEY        = 0x00200
-	WOW64_64KEY        = 0x00100
-	WRITE              = 0x20006
+	ALL_ACCESS                       = 0xf003f
+	CREATE_LINK                      = 0x00020
+	CREATE_SUB_KEY                   = 0x00004
+	ENUMERATE_SUB_KEYS               = 0x00008
+	EXECUTE                          = 0x20019
+	NOTIFY                           = 0x00010
+	QUERY_VALUE                      = 0x00001
+	READ                             = 0x20019
+	SET_VALUE                        = 0x00002
+	WOW64_32KEY                      = 0x00200
+	WOW64_64KEY                      = 0x00100
+	WRITE                            = 0x20006
 )
 
 // Key is a handle to an open Windows registry key.
@@ -110,7 +112,7 @@ loopItems:
 			if err == nil {
 				break
 			}
-			if err == syscall.ERROR_MORE_DATA {
+			if err == windows.ERROR_MORE_DATA {
 				// Double buffer size and try again.
 				l = uint32(2 * len(buf))
 				buf = make([]uint16, l)

@@ -12,6 +12,8 @@ import (
 	"syscall"
 	"unicode/utf16"
 	"unsafe"
+
+	"github.com/gabriel-samfira/sys/windows"
 )
 
 const (
@@ -32,7 +34,7 @@ const (
 
 var (
 	// ErrShortBuffer is returned when the buffer was too short for the operation.
-	ErrShortBuffer = syscall.ERROR_MORE_DATA
+	ErrShortBuffer = windows.ERROR_MORE_DATA
 
 	// ErrNotExist is returned when a registry key or value does not exist.
 	ErrNotExist = syscall.ERROR_FILE_NOT_FOUND
@@ -80,7 +82,7 @@ func (k Key) getValue(name string, buf []byte) (date []byte, valtype uint32, err
 		if err == nil {
 			return buf[:n], t, nil
 		}
-		if err != syscall.ERROR_MORE_DATA {
+		if err != windows.ERROR_MORE_DATA {
 			return nil, 0, err
 		}
 		if n <= uint32(len(buf)) {
@@ -309,7 +311,7 @@ loopItems:
 			if err == nil {
 				break
 			}
-			if err == syscall.ERROR_MORE_DATA {
+			if err == windows.ERROR_MORE_DATA {
 				println(len(buf), l)
 				// Double buffer size and try again.
 				l = uint32(2 * len(buf))

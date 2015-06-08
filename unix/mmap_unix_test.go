@@ -9,7 +9,7 @@ package unix_test
 import (
 	"testing"
 
-	"golang.org/x/sys/unix"
+	"github.com/gabriel-samfira/sys/unix"
 )
 
 func TestMmap(t *testing.T) {
